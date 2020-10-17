@@ -1,6 +1,7 @@
 import json
 
 def get_usernames():
+    #读取文件中已存的用户名和密码
     filename = "usernames.json"
     try:
         with open(filename) as obs:
@@ -10,6 +11,7 @@ def get_usernames():
     return usernames
 
 def sign_up(usernames):
+    #注册用户名和密码，存之于usernames字典
     key = input("\nSIGN UP:\nPlease input your account:(If you want to quit, input 'q'.)")
     if key == 'q':
         return
@@ -21,8 +23,10 @@ def sign_up(usernames):
     usernames[key] = value
 
 def sign_in(usernames):
+    #登陆，检查用户名和密码与usernames是否一致
     global b
     b = False
+    #b为布尔数，检测是否已登陆
     key = input("\nSIGN IN:\nPlease input your account:(If you want to quit, input 'q'.)")
     while key != 'q':
         value = input("Please input your password:")
@@ -50,9 +54,11 @@ while True:
     elif order == 'quit':
         break
     else:
-        print("You have inputed sth wrong.Please try again.\n")
+        print("You have inputed sth. wrong.Please try again.\n")
     if b:
         break
+    #已登陆则跳出循环
 filename = "usernames.json"
 with open(filename,'w') as ob:
     json.dump(usernames,ob)
+#储存数据
