@@ -11,11 +11,13 @@ def get_usernames():
 
 def sign_up(usernames):
     key = input("Please input your account:(If you want to quit, input 'q'.)")
+    if key == 'q':
+        return
     value = input("Please input your password:")
     for account in usernames.keys():
         if account == key:
-            print("You have been signed up.Try to sign in.")
-            return
+            print("You had been signed up.Try to sign in then.\n")
+            return True
     usernames[key] = value
 
 def sign_in(usernames,b=False):
@@ -39,7 +41,8 @@ while True:
         sign_in(usernames,b)
         break
     elif order == 'sign up':
-        sign_up(usernames)
+        if sign_up(usernames):
+            sign_in(usernames,b)
         break
     elif order == 'quit':
         break
